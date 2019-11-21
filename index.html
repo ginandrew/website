@@ -1,0 +1,24 @@
+<script>
+Date.getFormattedDateDiff = function(date1, date2) {
+  var b = moment(date1),
+      a = moment(date2),
+      intervals = ['years','months','weeks','days', 'hours', 'minutes'],
+      out = [];
+
+  for(var i=0; i<intervals.length; i++){
+      var diff = a.diff(b, intervals[i]);
+      b.add(diff, intervals[i]);
+      out.push(diff + ' ' + intervals[i]);
+  }
+  return out.join(', ');
+};
+
+
+var today = new Date(),
+    start_date = new Date("2019-11-20T00:00:00");
+
+document.getElementById('out2').innerHTML 
+  = '<p align="center">Gina and Andrew have been married for:<br/>' + Date.getFormattedDateDiff(start_date, today) + '</p>';
+</script>
+
+<p><label id="out2"></label></p>
